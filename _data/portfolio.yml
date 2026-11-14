@@ -1,0 +1,61 @@
+# The Portfolio page (/portfolio/) is built from this file: one entry per company or group,
+# each with its projects. To add a project, copy an item and edit it.
+#
+# pdf: path of a project overview PDF. The "Project overview (PDF)" button appears only
+#      when that file exists, so a missing PDF never leaves a broken link.
+#      Only files in a .../pdf/hr/ folder belong here; the .../pdf/technical/ folders are
+#      confidential and git-ignored.
+
+- company: "Kompas Gramedia"
+  role: "Artificial Intelligence Engineer"
+  period: "Nov 2025 – Present"
+  location: "Jakarta, Indonesia"
+  intro: "AI search, summarization, analytics and recommendation systems for news."
+  note: "Each overview PDF is a short summary for recruiters. Detailed system documentation is confidential to the employer."
+  items:
+    - title: "TribunX AI Overview"
+      summary: "An AI search and news summarization platform (RAG) indexing 10.6M+ articles using Vertex AI (Gemini) and Qdrant. I optimized vector compression, storage indexing, and multi-tier caching."
+      tags: ["RAG", "Vertex AI (Gemini)", "Qdrant", "Caching"]
+      pdf: "/files/portofolio/kompas/pdf/hr/4TH_TRIBUNX_AI_OVERVIEW.pdf"
+    - title: "Text-to-SQL Analytics Platform"
+      summary: "Natural language reporting across 5 media channels on AWS Athena. It replaces unpredictable AI agent loops with structured validation and automated SQL safety guardrails."
+      tags: ["Text-to-SQL", "AWS Athena", "Guardrails"]
+      pdf: "/files/portofolio/kompas/pdf/hr/3RD_AGENTIC_QUERY_ENGINE.pdf"
+    - title: "Personalized News Recommendation"
+      summary: "A recommendation pipeline using MongoDB and Qdrant, with a custom time-decay ranking and outlier filtering algorithm that balances breaking news with long-term reader interests."
+      tags: ["MongoDB", "Qdrant", "Ranking"]
+      pdf: "/files/portofolio/kompas/pdf/hr/2ND_QDRANT_INGESTION_RECOMMENDATION_ENGINE.pdf"
+    - title: "Trending Topics Engine"
+      summary: "A FastAPI trending topics engine serving 65+ regional portals, with a custom deduplication algorithm and a 5-tier database fallback that ensures 100% data availability."
+      tags: ["FastAPI", "Deduplication", "Fallback"]
+      pdf: "/files/portofolio/kompas/pdf/hr/1ST_TRENDING_TOPIC.pdf"
+
+- company: "Lacak.io"
+  role: "Artificial Intelligence Engineer"
+  period: "Oct 2023 – Jul 2025"
+  location: "Tangerang, Indonesia"
+  intro: "Computer vision and document AI."
+  note: "Listed as in my CV."
+  items:
+    - title: "CCTV Person Re-identification"
+      summary: "A real-time person re-identification (ReID) system using YOLO and facial embeddings to track visitors across multiple cameras."
+      tags: ["YOLO", "Facial embeddings", "ReID"]
+    - title: "License Plate Recognition"
+      summary: "A real-time dashboard camera License Plate Recognition (LPR) pipeline using YOLO and PaddleOCR, optimized with OpenVINO for fast detection on standard CPU hardware."
+      tags: ["YOLO", "PaddleOCR", "OpenVINO"]
+    - title: "Admissions Document Reader"
+      summary: "An automated document reader for university admissions using a hybrid Azure and OpenAI pipeline, replacing traditional OCR to significantly boost extraction accuracy."
+      tags: ["Azure", "OpenAI"]
+
+- company: "Personal projects"
+  intro: "Computer vision and assistive technology."
+  note: "Listed as in my CV."
+  items:
+    - title: "Abandoned Object Detection (AOD)"
+      summary: "Public safety and automated security surveillance."
+    - title: "People High Risk Area"
+      summary: "Safety compliance and crowd control preventing unauthorized density in dangerous zone."
+    - title: "C-Eyes (Camera Eyes)"
+      summary: "Helps impaired individuals perceive their surrounding environment through 8D audio spatial feedback."
+    - title: "TugasKita"
+      summary: "Resolves scheduling and task-management bottlenecks for students."

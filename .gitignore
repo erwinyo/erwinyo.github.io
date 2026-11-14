@@ -24,3 +24,9 @@ package-lock.json
 
 # Ignore the main.min.js since it should be built as part of jekyll-build.yml
 assets/js/main.min.js
+
+# Confidential company documentation: the structure of the employer's systems must not be published.
+# Only files/portofolio/<company>/pdf/hr/ is meant for the public site.
+files/portofolio/*/pdf/technical/
+files/portofolio/*/pdf/figures/
+files/portofolio/*/markdown/
