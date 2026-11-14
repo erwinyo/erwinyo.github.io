@@ -5,71 +5,41 @@ permalink: /cv/
 author_profile: true
 redirect_from:
   - /resume
-# To update the CV, drop the new PDF into /files and change this path.
+# To update the CV:
+#   1. Put the new PDF in /files and change cv_pdf below.
+#   2. Replace the preview images in /images/cv with one PNG per page, e.g.
+#      pdftoppm -png -r 200 "files/<new cv>.pdf" images/cv/page
+#      (every PNG in /images/cv is shown, in filename order)
 cv_pdf: "/files/[ATS] Resume & CV - 31 October 2026.pdf"
+cv_download_name: "Erwin_Yonata_CV.pdf"
 ---
 
 <style>
   #cv-download { text-decoration: none; }
-  .cv-preview { margin-top: 1em; }
-  .cv-preview canvas {
+  .cv-preview figure { display: block; margin: 1.5em 0 0; }
+  .cv-preview img {
     display: block;
     width: 100%;
     height: auto;
-    margin-bottom: 1em;
+    margin: 0;
     border: 1px solid var(--global-border-color);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
   }
+  .cv-preview figcaption { margin-top: 0.5em; text-align: center; }
 </style>
 
 <p>
-  <a id="cv-download" class="btn" href="{{ page.cv_pdf | relative_url }}" download>
+  <a id="cv-download" class="btn" href="{{ page.cv_pdf | relative_url }}" download="{{ page.cv_download_name }}">
     <i class="fas fa-download" aria-hidden="true"></i> Download CV (PDF)
   </a>
 </p>
 
-<div id="cv-preview" class="cv-preview">Loading preview…</div>
-
-<script type="module">
-  const PDFJS = "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/";
-  const box = document.getElementById("cv-preview");
-  const url = document.getElementById("cv-download").href;
-  let pdf;
-  let lastWidth = 0;
-
-  async function render() {
-    const width = box.clientWidth;
-    if (!width || width === lastWidth) return;
-    lastWidth = width;
-    const dpr = window.devicePixelRatio || 1;
-    const canvases = [];
-    for (let n = 1; n <= pdf.numPages; n++) {
-      const page = await pdf.getPage(n);
-      const scale = (width / page.getViewport({ scale: 1 }).width) * dpr;
-      const viewport = page.getViewport({ scale: scale });
-      const canvas = document.createElement("canvas");
-      canvas.width = Math.floor(viewport.width);
-      canvas.height = Math.floor(viewport.height);
-      canvas.setAttribute("role", "img");
-      canvas.setAttribute("aria-label", "CV page " + n + " of " + pdf.numPages);
-      await page.render({ canvasContext: canvas.getContext("2d"), viewport: viewport }).promise;
-      canvases.push(canvas);
-    }
-    box.replaceChildren(...canvases);
-  }
-
-  try {
-    const pdfjsLib = await import(PDFJS + "pdf.min.mjs");
-    pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS + "pdf.worker.min.mjs";
-    pdf = await pdfjsLib.getDocument(url).promise;
-    await render();
-    let timer;
-    window.addEventListener("resize", function () {
-      clearTimeout(timer);
-      timer = setTimeout(render, 200);
-    });
-  } catch (err) {
-    console.error(err);
-    box.textContent = "Preview unavailable. Use the download button above.";
-  }
-</script>
+{% assign cv_pages = site.static_files | where_exp: "f", "f.path contains '/images/cv/'" | where: "extname", ".png" | sort: "path" %}
+<div class="cv-preview" aria-label="CV preview">
+  {% for img in cv_pages %}
+  <figure>
+    <img src="{{ img.path | relative_url }}" alt="CV page {{ forloop.index }} of {{ cv_pages.size }}. Download the PDF above for selectable text."{% unless forloop.first %} loading="lazy"{% endunless %}>
+    {% if cv_pages.size > 1 %}<figcaption>Page {{ forloop.index }} of {{ cv_pages.size }}</figcaption>{% endif %}
+  </figure>
+  {% endfor %}
+</div>
