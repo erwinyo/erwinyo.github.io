@@ -53,9 +53,12 @@
   items:
     - title: "Abandoned Object Detection (AOD)"
       summary: "Public safety and automated security surveillance."
+      tags: ["Python", "OpenCV", "YOLOv11 (classification)", "PyTorch", "NumPy"]
     - title: "People High Risk Area"
       summary: "Safety compliance and crowd control preventing unauthorized density in dangerous zone."
+      tags: ["Python", "YOLOv11", "Supervision", "OpenCV", "FastAPI", "MongoDB", "MinIO", "Docker"]
     - title: "C-Eyes (Camera Eyes)"
       summary: "Helps impaired individuals perceive their surrounding environment through 8D audio spatial feedback."
+      tags: ["Python", "PyTorch", "MiDaS", "YOLOv5", "OpenCV", "MTCNN", "Pygame", "gTTS"]
     - title: "TugasKita"
       summary: "Resolves scheduling and task-management bottlenecks for students."
