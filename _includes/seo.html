@@ -138,11 +138,10 @@ Twitter username (site.twitter.username), matching upstream behavior.
 {% if page.date %}
   <meta property="og:type" content="article">
 {% endif %}
-{% comment %} og:description comes from the page excerpt, or falls back to site.og_description; it is not emitted otherwise. {% endcomment %}
-{% if page.excerpt %}
-  <meta property="og:description" name="description" content="{{ seo_description }}">
-{% elsif site.og_description %}
-  <meta property="og:description" name="description" content="{{ site.og_description }}">
+{% comment %} og:description (link previews in WhatsApp, LinkedIn, etc.) uses the same text as the meta description:
+page.description, then the page excerpt, then site.description. {% endcomment %}
+{% if seo_description %}
+  <meta property="og:description" content="{{ seo_description }}">
 {% endif %}
 {% if canonical_url %}
   <meta property="og:url" content="{{ canonical_url }}">
