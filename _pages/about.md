@@ -9,8 +9,8 @@ redirect_from:
 
 <style>
   .about-intro { font-size: 1.15em; }
-  .about-links { list-style: none; margin: 1.5em 0 0; padding: 0; }
-  .about-links li { margin-bottom: 0.4em; }
+  .about-links { display: flex; flex-wrap: wrap; gap: 0.4em 1.25em; list-style: none; margin: 1.5em 0 0; padding: 0; }
+  .about-links li { margin: 0; }
   .about-links a { font-weight: 600; text-decoration: none; }
   .about-links a:hover { text-decoration: underline; }
 </style>

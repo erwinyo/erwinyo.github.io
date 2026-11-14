@@ -6,11 +6,11 @@ author_profile: true
 redirect_from:
   - /resume
 # To update the CV:
-#   1. Put the new PDF in /files and change cv_pdf below.
-#   2. Replace the preview images in /images/cv with one PNG per page, e.g.
-#      pdftoppm -png -r 200 "files/<new cv>.pdf" images/cv/page
-#      (every PNG in /images/cv is shown, in filename order)
-cv_pdf: "/files/[ATS] Resume & CV - 31 October 2026.pdf"
+#   1. Put the new PDF in /files/cv and change cv_pdf below.
+#   2. Put one PNG per page in /images/cv/<PDF name without .pdf>/, e.g.
+#      pdftoppm -png -r 200 "files/cv/<name>.pdf" "images/cv/<name>/page"
+#      (every PNG in that folder is shown, in filename order)
+cv_pdf: "/files/cv/[ATS] Resume & CV - 31 October 2026.pdf"
 cv_download_name: "Erwin_Yonata_CV.pdf"
 ---
 
@@ -34,7 +34,9 @@ cv_download_name: "Erwin_Yonata_CV.pdf"
   </a>
 </p>
 
-{% assign cv_pages = site.static_files | where_exp: "f", "f.path contains '/images/cv/'" | where: "extname", ".png" | sort: "path" %}
+{% assign cv_name = page.cv_pdf | split: "/" | last | remove: ".pdf" %}
+{% assign cv_dir = "/images/cv/" | append: cv_name | append: "/" %}
+{% assign cv_pages = site.static_files | where_exp: "f", "f.path contains cv_dir" | where: "extname", ".png" | sort: "path" %}
 <div class="cv-preview" aria-label="CV preview">
   {% for img in cv_pages %}
   <figure>
